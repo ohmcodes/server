@@ -31,25 +31,29 @@ void admin::callbacks::Chat::call(long long a1, palworld::FPalChatMessage* chat_
 
 			// Set the POST data
 			nlohmann::json data;
-			data[_("username")]   = _("Palworld");
+			//data[_("username")]   = _("Palworld");
 			data[_("avatar_url")] = _("https://i.imgur.com/VlmFzXD.png");
-			if (!config_file->json[_("discord")][_("bot_name")].empty())
+			/*if (!config_file->json[_("discord")][_("bot_name")].empty())
 			{
 				data[_("username")] = config_file->json[_("discord")][_("bot_name")];
-			}
+			}*/
+			data[_("username")] = palworld::Sdk::to_utf8(
+				chat_message->Sender.get_wide_string());
 
 			if (!config_file->json[_("discord")][_("bot_avatar")].empty())
 			{
 				data[_("avatar_url")] = config_file->json[_("discord")][_("bot_avatar")];
 			}
 
+			data[_("content")] = palworld::Sdk::to_utf8(chat_message->Message.get_wide_string());
+
 			// Allow UTF-8 Characters
 			// Fixes: https://github.com/palworld-admin/server/issues/2
-			data[_("embeds")][0][_("author")][_("name")] = palworld::Sdk::to_utf8(
+			/*data[_("embeds")][0][_("author")][_("name")] = palworld::Sdk::to_utf8(
 				chat_message->Sender.get_wide_string());
 			data[_("embeds")][0][_("description")] = palworld::Sdk::to_utf8(
 				chat_message->Message.get_wide_string());
-			data[_("embeds")][0][_("color")] = 0x00FF00;
+			data[_("embeds")][0][_("color")] = 0x00FF00;*/
 
 			if (!config_file->json[_("discord")][_("color")].empty())
 			{

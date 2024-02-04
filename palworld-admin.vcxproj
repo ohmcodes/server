@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
-    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgApplocalDeps>false</VcpkgApplocalDeps>
@@ -160,7 +160,8 @@
       <ModuleDefinitionFile>$(ProjectDir)wrapper\d3d9.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy /b /v /y "$(OutputPath)palworld-admin.dll" "D:\GOG Games\Palworld\_Dedicated Server\Pal\Binaries\Win64\d3d9.dll"</Command>
+      <Command>if not exist $(SolutionDir)Output mkdir $(SolutionDir)Output 
+copy /b /v /y "$(OutputPath)palworld-admin.dll" "$(SolutionDir)Output\d3d9.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
