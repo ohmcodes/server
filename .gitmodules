@@ -1,9 +1,9 @@
 [submodule "include/palworld"]
 	path = include/palworld
-	url = https://github.com/palworld-admin/sdk
+	url = https://github.com/ohmcodes/sdk
 [submodule "include/ue"]
 	path = include/ue
-	url = https://github.com/palworld-admin/ue
+	url = https://github.com/ohmcodes/ue
 [submodule "wrapper"]
 	path = wrapper
-	url = https://github.com/palworld-admin/d3d9-wrapper
+	url = https://github.com/ohmcodes/d3d9-wrapper
